@@ -19,5 +19,7 @@ for (const folder of folders) {
   result[folder] = files.map(f => `/${folder}/${f}`);
 }
 
-fs.writeFileSync("wallpapers.json", JSON.stringify(result, null, 2));
-console.log("✅ wallpapers.json 已生成");
+// 写入 functions 目录
+const outputPath = path.join(process.cwd(), "functions", "wallpapers.json");
+fs.writeFileSync(outputPath, JSON.stringify(result, null, 2, 2));
+console.log("✅ wallpapers.json 已生成到 functions 目录");
