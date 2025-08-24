@@ -1,7 +1,7 @@
 import wallpapers from "./wallpapers.json";
 
 /**
- * 访问域名直接返回随机壁纸
+ * 根路径随机返回图片
  * 子域名规则：
  *   blur1.zntv.dpdns.org -> blur
  *   car1.zntv.dpdns.org  -> car
