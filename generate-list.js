@@ -5,10 +5,12 @@ const folders = ["blur", "car", "girl"];
 const result = {};
 
 for (const folder of folders) {
-  const files = fs.readdirSync(folder)
-    .filter(f => f.endsWith(".png") || f.endsWith(".jpg"))
-    .map(f => `/${folder}/${f}`);
-  result[folder] = files;
+  const dirPath = path.join(process.cwd(), folder);
+  const files = fs.readdirSync(dirPath).filter(f =>
+    /\.(jpg|jpeg|png|gif|webp)$/i.test(f)
+  );
+  result[folder] = files.map(f => `/${folder}/${f}`);
 }
 
 fs.writeFileSync("wallpapers.json", JSON.stringify(result, null, 2));
+console.log("✅ wallpapers.json 已生成");
