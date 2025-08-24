@@ -13,7 +13,7 @@ export async function onRequest(context) {
   
   let folder;
   if (host.startsWith("blur.")) folder = "blur";
-  else if (host.startsWith("car.")) folder = "car";
+  else if (host.startsWith("car1.")) folder = "car";
   else if (host.startsWith("girl.")) folder = "girl";
   else folder = "blur"; // 默认一个
 
