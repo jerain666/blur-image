@@ -12,7 +12,7 @@ export async function onRequest(context) {
   const host = context.request.headers.get("host");
   
   let folder;
-  if (host.startsWith("blur.")) folder = "blur";
+  if (host.startsWith("blur1.")) folder = "blur";
   else if (host.startsWith("car1.")) folder = "car";
   else if (host.startsWith("girl.")) folder = "girl";
   else folder = "blur"; // 默认一个
