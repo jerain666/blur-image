@@ -16,11 +16,9 @@ for (const folder of folders) {
     /\.(jpg|jpeg|png|gif|webp)$/i.test(f)
   );
 
-  // JSON 里存储相对路径，Pages 会自动映射到 https://域名/folder/file
   result[folder] = files.map(f => `/${folder}/${f}`);
 }
 
-// 写入 functions 目录
 const outputPath = path.join(process.cwd(), "functions", "wallpapers.json");
 fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
 console.log("✅ wallpapers.json 已生成到 functions 目录");
