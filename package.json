@@ -1,9 +1,8 @@
 {
-  "name": "blur-image",
+  "name": "blur-image-pages",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "build": "node generate-list.js"
+    "generate-list": "node generate-list.js"
   },
-  "devDependencies": {}
+  "dependencies": {}
 }
