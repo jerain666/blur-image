@@ -1,7 +1,7 @@
 import wallpapers from "./wallpapers.json";
 
 /**
- * 根路径随机返回图片
+ * 根路径随机返回图片内容
  * 子域名规则：
  *   blur1.zntv.dpdns.org -> blur
  *   car1.zntv.dpdns.org  -> car
@@ -24,6 +24,25 @@ export async function onRequest(context) {
   const idx = Math.floor(Math.random() * list.length);
   const imagePath = list[idx];
 
-  // 直接重定向到静态图片
-  return Response.redirect(imagePath, 302);
+  try {
+    // 使用 Pages 提供的 fetch 静态资源
+    const resp = await fetch(new URL(imagePath, context.env.PUBLIC_URL || "https://"+host));
+    if (!resp.ok) {
+      return new Response("Failed to fetch image", { status: 500 });
+    }
+
+    // 返回图片二进制数据
+    const blob = await resp.arrayBuffer();
+    const contentType = resp.headers.get("Content-Type") || "image/jpeg";
+
+    return new Response(blob, {
+      status: 200,
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "public, max-age=3600" // 可选：缓存 1 小时
+      }
+    });
+  } catch (err) {
+    return new Response("Error fetching image: " + err.message, { status: 500 });
+  }
 }
