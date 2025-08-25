@@ -1,8 +1,0 @@
-{
-  "name": "blur-image-pages",
-  "version": "1.0.0",
-  "scripts": {
-    "generate-list": "node generate-list.js"
-  },
-  "dependencies": {}
-}
